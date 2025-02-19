@@ -14,13 +14,10 @@ const FilterMenu = () => {
 
     return (
         <div className=" w-1/4 h-screen pt-10 px-6">
-            {/* Header */}
             <div className="flex items-center space-x-2 mb-6">
                 <img src={filter} alt="Filter Icon" className="w-6 h-6" />
                 <p className="text-xl font-bold text-gray-900">FILTER</p>
             </div>
-
-            {/* Sortir Terbaru */}
             <div className="mb-4">
                 <label className="block text-gray-800 font-semibold mb-2">Sortir</label>
                 <select 
@@ -34,8 +31,6 @@ const FilterMenu = () => {
                     <option value="termahal">Termahal</option>
                 </select>
             </div>
-
-            {/* Input Harga Min & Max */}
             <div className="mb-4">
                 <label className="block text-gray-800 font-semibold mb-2">Batas Harga</label>
                 <div className="flex space-x-2">
@@ -55,8 +50,6 @@ const FilterMenu = () => {
                     />
                 </div>
             </div>
-
-            {/* Tombol Clear Filter */}
             <button 
                 onClick={handleClear} 
                 className="w-full bg-blue-800 text-white p-2 rounded-lg mt-4 hover:bg-gray-700 transition"
