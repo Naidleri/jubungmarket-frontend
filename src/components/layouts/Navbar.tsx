@@ -11,7 +11,7 @@ const Navbar = () => {
                     <div className="flex items-center justify-between md:hidden w-full">
                         <button 
                             onClick={() => setIsOpen(!isOpen)} 
-                            className="text-white z-50"
+                            className="text-white z-10"
                         >
                             <Menu size={24} />
                         </button>

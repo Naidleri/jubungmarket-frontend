@@ -7,7 +7,7 @@ function Homepage() {
         <>
             <Navbar/>
             <FilterSelect/>
-            <div className="w-3/4 pt-10 min-h-screen bg-amber-100 mx-auto p-5">
+            <div className="w-3/4 pt-10 min-h-screen mx-auto p-5">
                 <h2 className="text-gray-900 pb-2">
                     Rekomendasi Produk
                 </h2>
