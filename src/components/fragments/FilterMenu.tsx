@@ -67,7 +67,7 @@ interface FilterMenuProps {
  
             <button 
                 onClick={handleClear} 
-                className="w-full bg-blue-800 text-white p-2 rounded-lg mt-4 hover:bg-gray-700 transition"
+                className="w-full bg-gray-800 text-white p-2 rounded-lg mt-4 hover:bg-gray-700 transition"
             >
                 Clear Filter
             </button>

@@ -15,7 +15,7 @@ function ResultPage() {
             <FilterSelect/>
             <div className='w-full md:w-3/4 mx-auto px-4 md:px-0'>
                 <button 
-                    className="fixed bottom-4 left-4 z-50 md:hidden bg-blue-800 p-3 rounded-full shadow-lg"
+                    className="fixed bottom-4 left-4 z-50 md:hidden bg-gray-900 p-3 rounded-full shadow-lg"
                     onClick={() => setIsFilterOpen(!isFilterOpen)}
                 >
                     <img src={filter} alt="Filter" className="w-6 h-6 invert" />
