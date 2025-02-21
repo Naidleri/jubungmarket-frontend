@@ -52,7 +52,7 @@ const Navbar = () => {
                                 placeholder="Cari barang yang ingin dibeli..." 
                                 className="p-2 w-96 outline-none text-black"
                             />
-                            <button className="px-5 py-2 bg-amber-100">
+                            <button className="px-5 py-2 bg-gray-900">
                                 <svg 
                                     className="w-6 h-6 text-gray-600" 
                                     xmlns="http://www.w3.org/2000/svg" 
