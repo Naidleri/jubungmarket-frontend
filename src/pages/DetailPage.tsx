@@ -1,38 +1,85 @@
+import { useState } from 'react';
 import Navbar from '../components/layouts/Navbar';
 import FilterSelect from '../components/fragments/FilterSelect';
 
+interface ImageGalleryProps {
+    images: string[];
+}
+
+const ImageGallery = ({ images }: ImageGalleryProps) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const nextImage = () => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+    };
+
+    const prevImage = () => {
+        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    };
+
+    const handleImageClick = (index: number) => {
+        setCurrentIndex(index);
+    };
+
+    return (
+        <div>
+            <div className="relative w-full h-120 aspect-square border-b border-neutral-400">
+                <img 
+                    src={images[currentIndex]} 
+                    alt={`Product ${currentIndex + 1}`} 
+                    className="w-full h-full object-cover"
+                />
+
+                <button 
+                    onClick={prevImage}
+                    className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 bg-black/50 p-2 text-white"
+                >
+                    ‹
+                </button>
+                <button 
+                    onClick={nextImage}
+                    className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 bg-black/50 p-2 text-white"
+                >
+                    ›
+                </button>
+            </div>
+            <div className="relative">
+                <div className="flex gap-2 p-5 overflow-x-auto scrollbar-hide border-b border-neutral-400">
+                    {images.map((image, index) => (
+                        <img 
+                            key={index}
+                            src={image} 
+                            alt={`Thumbnail ${index + 1}`}
+                            onClick={() => handleImageClick(index)}
+                            className={`min-w-[100px] h-[100px] object-cover cursor-pointer 
+                                ${currentIndex === index ? 'border-2 border-blue-800' : ''}`}
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
 function DetailPage() {
+    const images = [
+        "https://scontent.fsub8-1.fna.fbcdn.net/v/t39.30808-6/477708071_1174229227476890_7849054427177095112_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHRZ2ifyYT72AfflFbk7tyfEzyhjp1jJCoTPKGOnWMkKjHhUS5gcdqrK04zkMf8BRv3fy1R6Yk5pNCcuUDuaEqw&_nc_ohc=2zsnvBhfbEcQ7kNvgFOw0ML&_nc_oc=AdgxDSKXnLucQhMxRffJrS3sQDLoPiZ4tZEdSSnlD2nCkE34HoaEN_wfm8z6KIX6-teiiMN-sbE4hTCbwVhdnKLE&_nc_zt=23&_nc_ht=scontent.fsub8-1.fna&_nc_gid=AL0eO4k7vGfq3iyO-dPXYgb&oh=00_AYAIWjyrP2rD8R5krOfGrBUUzGHmKf7MBIeRJXvq3A4xjw&oe=67BDBA07",
+        "https://scontent.fsub8-1.fna.fbcdn.net/v/t39.30808-6/476465677_600085632951867_5578565749473397801_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE5Zg1pXsv_KcuZBUyKTFttK1b-NsdeNPkrVv42x140-QNBhRJJB-oLfavr1fJIoGt8KmkfzA_ayxJcx32Uq9UC&_nc_ohc=Fwp-PzKhLpAQ7kNvgEPtyLz&_nc_oc=AdhFtIC-CuRTrx7TTvTMxiXjr4F_I9JGrmVSaax5XgmEAy9xfC6oZ5WhO4SH526s1PTfBR04nxeGyc8dmyY_fE5E&_nc_zt=23&_nc_ht=scontent.fsub8-1.fna&_nc_gid=AX73_xgbok1zOUyQBiPjDrR&oh=00_AYAtudbwJbx3T9ZhV8utQ1THaW9a6LXLBzE3kgFanc-YJg&oe=67BDB801",
+        "https://scontent.fsub8-2.fna.fbcdn.net/v/t39.30808-6/475057451_592638110363286_5359393458461351118_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFRACJlGTwahE34Pq6ABu1ZDI9BgE-axXUMj0GAT5rFdQauygB-SI1zYt5heDGOsgSnrZ6xLu4a0IjaXnaMYJv3&_nc_ohc=afZqs-IEU3oQ7kNvgHyV827&_nc_oc=AdgzVhxZLqe7FLJ1oZXrIw-PBpluglaq6WwyscABrTNkymexhMPioOPnIPmqxQb7W4AZ8cZygOj4v4Q8HZPi3p_e&_nc_zt=23&_nc_ht=scontent.fsub8-2.fna&_nc_gid=APzUVauM1BJAlTQj5bA3RU8&oh=00_AYAtzfJdaMPvdNdtUEdJZf81UVdNt2SfoaPzMgjQ7g1NPA&oe=67BDC7F8"
+    ];
     return (
         <div>
             <Navbar/>
             <FilterSelect/>
             <div className='p-3 bg--200 md:flex md:gap-2 md:w-3/4  mx-auto'>
                 <div id='deskripsi-produk' className='w-3/4 mx-auto border-2 border-neutral-400'>
-                    <div id='main-image' className="w-full h-96 aspect-square border-b border-neutral-400">
-                        <img 
-                            src="https://scontent.fsub8-1.fna.fbcdn.net/v/t39.30808-6/477030273_1174229157476897_7373581820297508564_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFLPph_i9dn6D6MGj1tAuZMpoWmFF0X13CmhaYUXRfXcIrmyyhqTqlgTaYPm0sVeueWiAPKQlAF0z64xp3dr18t&_nc_ohc=AlEgIfyKyDwQ7kNvgHrqM5y&_nc_oc=AdjWTF0UgbPyjqsG-XBCk83bfsi5W9AAH7SSqtn8TeSYcW0FHIWuhFx1PP6uekD7umOpVtHwvhqVf8ySb8AbwfDQ&_nc_zt=23&_nc_ht=scontent.fsub8-1.fna&_nc_gid=Ae_9TE8br8H7WeGaFDc5oic&oh=00_AYAIsSQfeSOeydDm2xhNoXPBQ-R07ZAPgaGSdr2qWkiuGA&oe=67BD6E9A" 
-                            alt="Gambar Produk" 
-                            className='w-full h-full object-cover'
-                        />
-                    </div>
-                    <div id='sub-image' className="flex gap-2 p-5 h-50 overflow-y-hidden border-b border-neutral-400">
-                        <img src="https://scontent.fsub8-1.fna.fbcdn.net/v/t39.30808-6/476066902_600085462951884_6740729431220176873_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH9-4B1I0Vry0vcLwnneJ1KIJ6HYvOZCZognodi85kJmmznFrGBLGdPbKcLP-K6sA6-I6ZS6FN_ychLEGOG9ixm&_nc_ohc=MfOpdqq3S5EQ7kNvgE2Vt0-&_nc_oc=AdiGM_R0l3uehbVV3YBdbpv-FTJfAQnopuHXvhJqig_j8aMr-ZbkGPtPLN7LEUna2uMYJuxK4uXr79Xjmj0hUJH3&_nc_zt=23&_nc_ht=scontent.fsub8-1.fna&_nc_gid=AVAw1NZ5gWczyaOQ8JehY5T&oh=00_AYBenyRziQja6CPZD0XxA8l3pV6GgG3eO4Kr73bhsiQ9HQ&oe=67BD6E25" 
-                             alt="" 
-                             />
-                          <img src="https://scontent.fsub8-1.fna.fbcdn.net/v/t39.30808-6/476066902_600085462951884_6740729431220176873_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH9-4B1I0Vry0vcLwnneJ1KIJ6HYvOZCZognodi85kJmmznFrGBLGdPbKcLP-K6sA6-I6ZS6FN_ychLEGOG9ixm&_nc_ohc=MfOpdqq3S5EQ7kNvgE2Vt0-&_nc_oc=AdiGM_R0l3uehbVV3YBdbpv-FTJfAQnopuHXvhJqig_j8aMr-ZbkGPtPLN7LEUna2uMYJuxK4uXr79Xjmj0hUJH3&_nc_zt=23&_nc_ht=scontent.fsub8-1.fna&_nc_gid=AVAw1NZ5gWczyaOQ8JehY5T&oh=00_AYBenyRziQja6CPZD0XxA8l3pV6GgG3eO4Kr73bhsiQ9HQ&oe=67BD6E25" 
-                             alt="" 
-                             />  <img src="https://scontent.fsub8-1.fna.fbcdn.net/v/t39.30808-6/476066902_600085462951884_6740729431220176873_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH9-4B1I0Vry0vcLwnneJ1KIJ6HYvOZCZognodi85kJmmznFrGBLGdPbKcLP-K6sA6-I6ZS6FN_ychLEGOG9ixm&_nc_ohc=MfOpdqq3S5EQ7kNvgE2Vt0-&_nc_oc=AdiGM_R0l3uehbVV3YBdbpv-FTJfAQnopuHXvhJqig_j8aMr-ZbkGPtPLN7LEUna2uMYJuxK4uXr79Xjmj0hUJH3&_nc_zt=23&_nc_ht=scontent.fsub8-1.fna&_nc_gid=AVAw1NZ5gWczyaOQ8JehY5T&oh=00_AYBenyRziQja6CPZD0XxA8l3pV6GgG3eO4Kr73bhsiQ9HQ&oe=67BD6E25" 
-                             alt="" 
-                             />  <img src="https://scontent.fsub8-1.fna.fbcdn.net/v/t39.30808-6/476066902_600085462951884_6740729431220176873_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH9-4B1I0Vry0vcLwnneJ1KIJ6HYvOZCZognodi85kJmmznFrGBLGdPbKcLP-K6sA6-I6ZS6FN_ychLEGOG9ixm&_nc_ohc=MfOpdqq3S5EQ7kNvgE2Vt0-&_nc_oc=AdiGM_R0l3uehbVV3YBdbpv-FTJfAQnopuHXvhJqig_j8aMr-ZbkGPtPLN7LEUna2uMYJuxK4uXr79Xjmj0hUJH3&_nc_zt=23&_nc_ht=scontent.fsub8-1.fna&_nc_gid=AVAw1NZ5gWczyaOQ8JehY5T&oh=00_AYBenyRziQja6CPZD0XxA8l3pV6GgG3eO4Kr73bhsiQ9HQ&oe=67BD6E25" 
-                             alt="" 
-                             />
-                    </div>
+                <ImageGallery images={images} />
                     <div id='deskripsi' className='p-5 text-neutral-900'>
                         <h1 className='text-2xl'>Nama Produk</h1>
                         <p className='text-lg'>Deskripsi Produk</p>
                     </div>
                 </div>
-                <div id='info-produk' className=' mx-auto w-2/4 md:w-1/4 flex flex-col gap-5'>
+                <div id='info-produk' className='pt-5 md:pt-0 mx-auto w-3/4 md:w-1/4 flex flex-col gap-5'>
                     <div id='card-harga' className='p-5 border-2 border-neutral-400 rounded-xl flex flex-col gap-2'>
                         <h2 className='text-neutral-900 text-2xl font-bold'>Rp1.000.000</h2>
                         <h3 className='text-neutral-900 text-xl font-medium'>Jual Minji</h3>
