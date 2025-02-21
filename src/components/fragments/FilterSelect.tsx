@@ -33,18 +33,6 @@ const FilterSelect = () => {
                     </div>
                 ))}
             </div>
-
-            <style>
-                {`
-                    .filter::-webkit-scrollbar {
-                        display: none;
-                    }
-                    .filter {
-                        -ms-overflow-style: none;
-                        scrollbar-width: none;
-                    }
-                `}
-            </style>
         </div>
     );
 };
