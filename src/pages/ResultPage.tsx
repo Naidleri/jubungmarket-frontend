@@ -4,6 +4,7 @@ import CardProduk from '../components/fragments/CardProduk';
 import FilterSelect from '../components/fragments/FilterSelect';
 import FilterMenu from '../components/fragments/FilterMenu';
 import filter from "../assets/filter.png";
+import Footer from '../components/layouts/Footer';
 
 function ResultPage() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -53,6 +54,7 @@ function ResultPage() {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

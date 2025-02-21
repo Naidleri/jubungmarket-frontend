@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Navbar from '../components/layouts/Navbar';
 import FilterSelect from '../components/fragments/FilterSelect';
+import Footer from '../components/layouts/Footer';
 
 interface ImageGalleryProps {
     images: string[];
@@ -111,6 +112,7 @@ function DetailPage() {
                     </div>
                 </div> 
             </div>
+            <Footer/>
         </div>
     );
 }

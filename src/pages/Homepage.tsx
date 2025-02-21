@@ -1,6 +1,7 @@
 import Navbar from '../components/layouts/Navbar';
 import CardProduk from '../components/fragments/CardProduk';
 import FilterSelect from '../components/fragments/FilterSelect';
+import Footer from '../components/layouts/Footer';
 
 function Homepage() {
     return (
@@ -60,6 +61,7 @@ function Homepage() {
                     ></CardProduk>
                 </div>
             </div>
+            <Footer/>
         </> 
     );
 }
