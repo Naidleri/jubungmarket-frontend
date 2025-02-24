@@ -5,8 +5,8 @@ const API_URL = '/category'
 
 const getAll = async (): Promise<Category[]> => { 
     try {
-        const response = await api.get<Category[]>(API_URL);
-        return response.data;
+        const response = await api.get(API_URL);
+        return response.data.data || [];
     } catch (error: any) {
         throw new Error(error.message);
     }
@@ -14,8 +14,8 @@ const getAll = async (): Promise<Category[]> => {
 
 const getById = async (id: number): Promise<Category> => {
     try {
-        const response = await api.get<Category>(`${API_URL}/${id}`)
-        return response.data
+        const response = await api.get(`${API_URL}/${id}`)
+        return response.data.data; 
     } catch (error: any) {
         throw new Error(error.message)
     }
@@ -23,8 +23,8 @@ const getById = async (id: number): Promise<Category> => {
 
 const deleteCategory = async (id:number): Promise<Category> => {
     try {
-        const response = await api.delete<Category>(`${API_URL}/${id}`)
-        return response.data
+        const response = await api.delete(`${API_URL}/${id}`)
+        return response.data.data; 
     } catch (error: any) {
         throw new Error(error.message)
     }

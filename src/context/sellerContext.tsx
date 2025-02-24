@@ -47,7 +47,7 @@ export const SellerProvider = ({ children }: SellerProviderProps) => {
             setSellers(data);
             setError(null);
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Gagal to fetch sellers');
+            setError(err instanceof Error ? err.message : 'Gagal memuat seller');
         } finally {
             setLoading(false);
         }
@@ -60,7 +60,7 @@ export const SellerProvider = ({ children }: SellerProviderProps) => {
             setSeller(data);
             setError(null);
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Gagal to fetch seller');
+            setError(err instanceof Error ? err.message : 'Gagal memuat detail seller');
         } finally {
             setLoading(false);
         }
@@ -70,10 +70,10 @@ export const SellerProvider = ({ children }: SellerProviderProps) => {
         setLoading(true);
         try {
             const data = await sellerService.addSeller(newSeller);
-            setSellers([...sellers, data]);
+            setSellers(prev => [...prev, data]);
             setError(null);
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Gagal to add seller');
+            setError(err instanceof Error ? err.message : 'Gagal menambahkan seller');
         } finally {
             setLoading(false);
         }
@@ -83,10 +83,12 @@ export const SellerProvider = ({ children }: SellerProviderProps) => {
         setLoading(true);
         try {
             const data = await sellerService.updateSeller(id, updatedSeller);
-            setSellers(sellers.map((seller) => (seller.id === id ? data : seller)));
+            setSellers(prev => 
+                prev.map(seller => (seller.id === id ? data : seller))
+            );
             setError(null);
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Gagal to update seller');
+            setError(err instanceof Error ? err.message : 'Gagal memperbarui seller');
         } finally {
             setLoading(false);
         }
@@ -96,10 +98,10 @@ export const SellerProvider = ({ children }: SellerProviderProps) => {
         setLoading(true);
         try {
             await sellerService.deleteSeller(id);
-            setSellers(sellers.filter((seller) => seller.id !== id));
+            setSellers(prev => prev.filter(seller => seller.id !== id));
             setError(null);
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Gagal to delete seller');
+            setError(err instanceof Error ? err.message : 'Gagal menghapus seller');
         } finally {
             setLoading(false);
         }
@@ -120,7 +122,6 @@ export const SellerProvider = ({ children }: SellerProviderProps) => {
             }}
         >
             {children}
-            </SellerContext.Provider>
-    )
-}
-
+        </SellerContext.Provider>
+    );
+};
