@@ -34,7 +34,7 @@ function AdminProdukPage() {
               </tbody>
             </table>
           </div>
-          <div className='bg-red-200 flex justify-between items-center p-4'>
+          <div className='flex justify-between items-center p-4'>
             <Pagination />
             <button className="bg-blue-950 text-white w-fit px-3 py-3 rounded-lg ">Tambah Produk</button>
           </div>
