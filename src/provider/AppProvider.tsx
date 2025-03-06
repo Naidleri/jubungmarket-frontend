@@ -1,8 +1,8 @@
-import React, { ReactNode, FC } from "react";
+import { ReactNode, FC } from "react";
 import { ErrorBoundary } from 'react-error-boundary';
 import { ProductProvider } from "../context/productProvider";
 import { SellerProvider } from "../context/sellerProvider";
-import { CategoryProvider } from "../context/CategoryProvider";
+import { CategoryProvider } from "../context/categoryProvider";
 
 interface AppProviderProps {
   children: ReactNode;
