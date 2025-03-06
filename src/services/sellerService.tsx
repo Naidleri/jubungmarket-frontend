@@ -7,9 +7,11 @@ const getAll = async (): Promise<Seller[]> => {
     try {
         const response = await api.get(API_URL);
         return response.data.data || [];
-    } catch (error: any) {
-        console.error('Error fetching sellers:', error);
-        throw new Error(error.response?.data?.message || 'Failed to fetch sellers');
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        }
+        throw new Error('An unexpected error occurred');
     }
 }
 
@@ -17,40 +19,48 @@ const getById = async (id: number): Promise<Seller> => {
     try {
         const response = await api.get(`${API_URL}/${id}`);
         return response.data.data; 
-    } catch (error: any) {
-        console.error('Error fetching seller:', error);
-        throw new Error(error.response?.data?.message || 'Failed to fetch seller');
-    }
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        }
+        throw new Error('An unexpected error occurred');
+    }    
 }
 
 const addSeller = async (newSeller: FormData): Promise<Seller> => { 
     try {
         const response = await api.post(API_URL, newSeller);
         return response.data.data; 
-    } catch (error: any) {
-        console.error('Error adding seller:', error);
-        throw new Error(error.response?.data?.message || 'Failed to add seller');
-    }
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        }
+        throw new Error('An unexpected error occurred');
+    }    
 } 
 
 const updateSeller = async (id: number, updateSeller: FormData): Promise<Seller> => {
     try {
         const response = await api.put(`${API_URL}/${id}`, updateSeller);
         return response.data.data; 
-    } catch (error: any) {
-        console.error('Error updating seller:', error);
-        throw new Error(error.response?.data?.message || 'Failed to update seller');
-    }
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        }
+        throw new Error('An unexpected error occurred');
+    }    
 }
 
 const deleteSeller = async (id: number): Promise<Seller> => {
     try {
         const response = await api.delete(`${API_URL}/${id}`);
         return response.data.data; 
-    } catch (error: any) {
-        console.error('Error deleting seller:', error);
-        throw new Error(error.response?.data?.message || 'Failed to delete seller');
-    }
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        }
+        throw new Error('An unexpected error occurred');
+    }    
 }
 
 export default {
