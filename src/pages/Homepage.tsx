@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { ProductContext } from '../context/productContext';
 import { SellerContext } from '../context/sellerContext';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/layouts/Navbar';
 import CardProduk from '../components/fragments/CardProduk';
 import FilterSelect from '../components/fragments/FilterSelect';
@@ -57,13 +58,14 @@ function Homepage() {
 
         <div className='md:flex flex-wrap gap-5 gap-y-6'>
           {products.map(product => (
-            <CardProduk 
-              key={product.id}
-              foto={typeof product.image === 'string' ? product.image : product.image[0]}
-              namaProduk={product.name}
-              harga={formatPrice(product.price)}
-              penjual={getSellerName(product.sellerId)}
-            />
+            <Link to={`/detail/${product.id}`} key={product.id}> {/* Wrapping dengan Link */}
+                <CardProduk 
+                foto={typeof product.image === 'string' ? product.image : product.image[0]}
+                namaProduk={product.name}
+                harga={formatPrice(product.price)}
+                penjual={getSellerName(product.sellerId)}
+                />
+            </Link>
           ))}
         </div>
       </div>
