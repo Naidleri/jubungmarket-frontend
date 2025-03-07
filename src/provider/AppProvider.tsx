@@ -1,5 +1,6 @@
 import { ReactNode, FC } from "react";
 import { ErrorBoundary } from 'react-error-boundary';
+import { AuthProvider } from "../context/authProvider";
 import { ProductProvider } from "../context/productProvider";
 import { SellerProvider } from "../context/sellerProvider";
 import { CategoryProvider } from "../context/categoryProvider";
@@ -21,6 +22,7 @@ const ErrorFallback: FC<ErrorFallbackProps> = ({ error }) => (
 
 export const AppProvider = ({ children }: AppProviderProps) => (
   <ErrorBoundary FallbackComponent={ErrorFallback}>
+    <AuthProvider>
       <ProductProvider>
           <SellerProvider>
               <CategoryProvider>
@@ -28,5 +30,6 @@ export const AppProvider = ({ children }: AppProviderProps) => (
               </CategoryProvider>
           </SellerProvider>
       </ProductProvider>
+    </AuthProvider>
   </ErrorBoundary>
 );
