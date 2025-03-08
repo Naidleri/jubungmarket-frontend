@@ -7,19 +7,4 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' } 
 });
 
-api.interceptors.request.use(
-  (config) => {
-    const token = Cookies.get("token") || localStorage.getItem("token")
-
-    if (token && ["post","put","delete"].includes(config.method || "")) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-)
-
 export default api;
