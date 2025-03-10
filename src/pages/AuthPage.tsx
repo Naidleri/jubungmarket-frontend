@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/authContext'; 
 
 function AuthPage() {
@@ -7,7 +7,13 @@ function AuthPage() {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     
-    const { login, error: contextError, loading } = useContext(AuthContext);
+    const { login, error: contextError, loading, isAuthenticated } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (isAuthenticated && !loading) {
+          window.location.href = '/admin/produk'; 
+        }
+      }, [isAuthenticated, loading]);
 
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault();
