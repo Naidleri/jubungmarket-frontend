@@ -58,7 +58,7 @@ function Homepage() {
 
         <div className='md:flex flex-wrap gap-5 gap-y-6'>
           {products.map(product => (
-            <Link to={`/detail/${product.id}`} key={product.id}> {/* Wrapping dengan Link */}
+            <Link to={`/detail/${product.id}`} key={product.id}> 
                 <CardProduk 
                 foto={typeof product.image === 'string' ? product.image : product.image[0]}
                 namaProduk={product.name}

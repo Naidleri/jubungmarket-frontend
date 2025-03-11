@@ -3,7 +3,7 @@ const FilterSelect = () => {
         { id: 1, text: 'Semua Kategori', isTitle: true },
         { id: 2, text: 'Makanan dan Minuman', isTitle: false },
         { id: 3, text: 'Kerajinan', isTitle: false },
-        { id: 4, text: 'Produk pertanian dan Peternakan', isTitle: false },
+        { id: 4, text: 'Produk Pertanian dan Peternakan', isTitle: false },
         { id: 5, text: 'Oleh-oleh khas Jubung', isTitle: false },
     ];
 
