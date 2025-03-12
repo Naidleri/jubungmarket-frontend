@@ -31,6 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/result" element={<ResultPage />} />
+        <Route path="/result/:categoryName" element={<ResultPage />} />
         <Route path="/detail/:productId" element={<DetailPage />} />
         <Route path="/penjual" element={<PenjualPage />} />
         <Route path="/auth" element={<AuthPage />} />
