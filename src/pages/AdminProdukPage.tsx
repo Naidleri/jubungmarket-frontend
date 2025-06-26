@@ -1,5 +1,6 @@
 import Sidebar from '../components/layouts/Sidebar';
 import Pagination from '../components/fragments/Pagination';
+import { Link } from "react-router-dom";
 
 function AdminProdukPage() {
   return (
@@ -36,7 +37,9 @@ function AdminProdukPage() {
           </div>
           <div className='flex justify-between items-center p-4'>
             <Pagination />
-            <button className="bg-blue-950 text-white w-fit px-3 py-3 rounded-lg ">Tambah Produk</button>
+            <Link to="tambah-produk" className="bg-blue-950 text-white w-fit px-3 py-3 rounded-lg">
+              Tambah Produk
+            </Link>
           </div>
         </div>
       </div>

@@ -53,7 +53,7 @@ function App() {
           } 
         />
         <Route 
-          path="/admin/tambah-produk" 
+          path="/admin/produk/tambah-produk" 
           element={
             <ProtectedRoute>
               <AddProductPage />
